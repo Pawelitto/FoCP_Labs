@@ -173,13 +173,13 @@ int main()
     print_stars_advanced(5, '#');
 
     // TASK 3 test
-    cout << "Factorial of 5: " << factorial(5) << endl;
+    cout << "Factorial of 5: " << factorial(5) << endl << endl;
 
     // TASK 4 test
-    cout << "Estimated π: " << estimate_pi(10000) << endl;
+    cout << "Estimated π: " << estimate_pi(10000) << endl << endl;
 
     // TASK 5 test
-    cout << "Minimum of 10 and 3.14: " << minimum(10, 3.14) << endl;
+    cout << "Minimum of 10 and 3.14: " << minimum(10, 3.14) << endl << endl;
 
     return 0;
 }
