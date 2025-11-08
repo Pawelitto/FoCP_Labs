@@ -98,19 +98,20 @@
 // TODO: TASK 1 - Write your power function here
 
 /** The function return power
- *  @return long int
  *  @param base
  *  @param exponent
+ *
+ *  @return long int
  */
 constexpr
 long int power(const int base, const int exponent) {
-    if (exponent == 0) { //
+    if (exponent == 0) { // Check if exponent equals 0 if yes, any number raised to 0 gives 1 exept 0
         return 1;
     } else {
         long int result = 1;
 
         for (int i = 1; i <= exponent; ++i) {
-            result *= base;
+            result *= base; // Multiply result by base in each iteration
         }
 
         return result;
@@ -121,16 +122,17 @@ long int power(const int base, const int exponent) {
 // TODO: TASK 2 - Write your fibonacci function here
 
 /** Function to calculate the nth Fibonacci number using recursion
- *  @return nth Fibonacci number in type long int
  *  @param n
+ *
+ *  @return nth Fibonacci number in type long int
  */
 consteval
 long int fibonacci(const int n) {
     if (n <= 1){
-        return n;
+        return n; // Return n when 0 or 1
     }
 
-    return fibonacci(n - 1) + fibonacci(n - 2);
+    return fibonacci(n - 1) + fibonacci(n - 2); // Recursive case sum of two previous numbers
 }
 
 
@@ -142,12 +144,14 @@ static int calls {0};
  *  @return number of times called function counter()
  */
 int counter() {
-    return calls++;
+    return calls++; // Incrementing static variable
 }
 
-/** Function to reseting state how many times someone called function counter() */
+/** Function to reseting state how many times someone called function counter()
+ * @return void
+ */
 void reset_counter() {
-    calls = 0;
+    calls = 0; // Reseting static variable
 }
 
 
@@ -158,6 +162,8 @@ void reset_counter() {
  * @param score
  * @param course
  * @param semester
+ *
+ * @return void
  */
 void print_grade(
     const std::string name,
@@ -171,31 +177,37 @@ void print_grade(
 // TODO: TASK 5 - Write your array statistics functions here
 
 /** Function finds the maximum value of array
- * @return maximum value
  * @param array
  * @param length
+ *
+ * @return maximum value
  */
 double find_max(const double array[], const int length) {
+    if (length == 0) return 0; // Check if array is not empty by length
+
     double highest = 0;
     for (int i = 0; i < length; ++i) {
-        if (array[i] > highest) {
-            highest = array[i];
+        if (array[i] > highest) { // Comparing highest number with previous number in array
+            highest = array[i]; // Setting new highest number
         }
     }
     return highest;
 }
 
 /** Function finds the minimum value of array
- * @return minimum value
  * @param array
  * @param length
+ *
+ * @return minimum value
  */
 double find_min(const double array[], const int length) {
+    if (length == 0) return 0; // Check if array is not empty by length
+
     double lowest = array[0];
 
     for (int i = 1; i < length; i++) {
-        if (array[i] < lowest) {
-            lowest = array[i];
+        if (array[i] < lowest) { // Comparing lowest number with previous number in array
+            lowest = array[i]; // Setting new lowest number
         }
     }
 
@@ -203,11 +215,14 @@ double find_min(const double array[], const int length) {
 }
 
 /** Function calculating average of array
- * @return average
  * @param array
  * @param length
+ *
+ * @return average
  */
 double calculate_average(const double array[], const int length) {
+    if (length == 0) return 0; // Check if array is not empty by length
+
     double average = 0;
     for (int i = 0; i < length; ++i) {
         average += array[i];
@@ -221,30 +236,121 @@ double calculate_average(const double array[], const int length) {
 
 /** Function removes all negative numbers
  * @param vec
+ *
+ * @return void
  */
 void remove_negatives(std::vector<int> & vec) {
+    if (vec.empty()) return; // Check if vector is not empty by function .empty()
+
     for (int i = 0; i < vec.size(); ++i) {
         if (vec[i] < 0) {
-            vec[i] = -vec[i];
+            vec.erase(vec.begin() + i);
+            // vec.begin() + i points to the i-th element to delete
         }
     }
 }
 
 /** Function returns sum of all elements
  * @param vec
+ *
+ * @return void
  */
 int sum_elements(const std::vector<int> & vec) {
+    if (vec.empty()) return 0; // Check if vector is not empty by function .empty()
+
     int sum = 0;
     for (int i = 0; i < vec.size(); ++i) {
         sum += vec[i];
     }
+
     return sum;
 }
 
+
 // TODO: TASK 7 - Write your string vector functions here
+
+/** Function prints all strings with their index
+ * @param vec
+ *
+ * @return void
+ */
+void print_strings(const std::vector<std::string> & vec) {
+    if (vec.empty()) return; // Check if vector is not empty by function .empty()
+
+    for (int i = 0; i < vec.size(); ++i) {
+        std::cout << i << ": "<< vec[i] << "\n";
+    }
+}
+
+/** Funcion finds the longest string and return it
+ * @param vec
+ *
+ * @return the longest string
+ */
+std::string find_longest(const std::vector<std::string> & vec) {
+    if (vec.empty()) return ""; // Check if vector is not empty by function .empty()
+
+    int longest = 0;
+    int longest_index = 0;
+    for (int i = 0; i < vec.size(); ++i) {
+        if (vec[i].length() > longest) {
+            longest_index = i; // Save index of longest item
+            longest = vec[i].length(); // Save how long is new longest word
+        }
+    }
+
+    return vec[longest_index]; // Return whole word with saved index
+}
 
 
 // TODO: TASK 8 - Write your temperature functions here
+
+/** Function append a given temperature to end of given vector.
+ *
+ * @param temps
+ * @param temp
+ *
+ * @return void
+ */
+void add_temperature(std::vector<double> & temps, double temp) {
+    temps.push_back(temp); // Adding new temperature to vector
+}
+
+/** Function takes a vector of temperature values and calculates:
+ * - the highest temperature,
+ * - the lowest temperature,
+ * - the average temperature.
+ * It then prints all these statistics.
+ *
+ * @param temps
+ *
+ * @return void
+ */
+void print_statistics(const std::vector<double> & temps) {
+    if (temps.empty()) return; // Check if vector is not empty by function .empty()
+
+    double highest = temps[0];
+    double lowest = temps[0];
+    double average = 0.0;
+
+
+    std::cout << "Total number of temperatures: " << temps.size() << "\n";
+    for (int i = 0; i < temps.size(); ++i) {
+        if (temps[i] > highest) { // check highest value if current element is greater
+            highest = temps[i]; // save new highest temperature
+        }
+        if (temps[i] < lowest) { // check loewst value if current element is smaller
+            lowest = temps[i]; // save new lowest temperature
+        }
+        average += temps[i]; // add current temperature to total sum
+    }
+    average /= temps.size(); // calculate average
+
+    std::cout << "Highest temperature: " << highest << "\n";
+    std::cout << "Lowest temperature: " << lowest << "\n";
+    std::cout << "Average temperature: " << average << "\n";
+}
+
 
 
 int main()
@@ -314,20 +420,52 @@ int main()
     std::cout << "TASK 6: Vector Manipulation\n";
     std::cout << "---------------------------\n";
 
+    std::vector vec {10, -5, 20, -15, 30, -25, 40};
 
+    std::cout << "Sum before editing negative numbers: " << sum_elements(vec) << std::endl;
 
+    std::cout << "Vector before: " << std::endl;
+    for (int i = 0; i < vec.size(); ++i) {
+        std::cout << vec[i] << " | ";
+    }
+
+    remove_negatives(vec);
+    std::cout << std::endl << "Vector after deleting negative numbers: " << std::endl;
+
+    for (int i = 0; i < vec.size(); ++i) {
+        std::cout << vec[i] << " | ";
+    }
+
+    std::cout << std::endl << "Sum after editing negative numbers: " << sum_elements(vec) << std::endl;
     std::cout << "\n";
 
     // TODO: TASK 7 - Test string vector operations
     std::cout << "TASK 7: String Vector Operations\n";
     std::cout << "---------------------------------\n";
-    // Your code here
+
+    std::vector<std::string> languages {"C++", "Python", "JavaScript", "Go", "Rust", "Assembly"};
+
+    print_strings(languages);
+
+    std::cout << "\n" << "Longest (name) programming language: " << find_longest(languages) << "\n";
+
     std::cout << "\n";
 
     // TODO: TASK 8 - Test temperature statistics
     std::cout << "TASK 8: Temperature Statistics\n";
     std::cout << "------------------------------\n";
-    // Your code here
+
+    const int TEST_SIZE = 8;
+    double test_temps[TEST_SIZE] = {20.5, 22.3, 19.8, 23.1, 21.7, 18.9, 24.2, 35};
+
+    std::vector<double> temperatures;
+
+    for (int i = 0; i < TEST_SIZE; ++i) {
+        add_temperature(temperatures, test_temps[i]);
+    }
+
+    print_statistics(temperatures);
+
     std::cout << "\n";
 
     return 0;
