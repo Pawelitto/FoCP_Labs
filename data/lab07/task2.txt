@@ -1,0 +1,5 @@
+Name: Lewis Hamilton, Score: 85
+Name: Max Verstappen, Score: 92
+Name: Fernando Alonso, Score: 78
+Name: Gabriel Bortoleto, Score: 65
+Name: Piotr Skowyrski, Score: 88
